@@ -1,0 +1,19 @@
+{
+  "name": "twitchaot",
+  "version": "1.0.0",
+  "description": "Twitch Always on Top",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bananamilk452/TwitchAOT.git"
+  },
+  "author": "starterDroid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bananamilk452/TwitchAOT/issues"
+  },
+  "homepage": "https://github.com/Bananamilk452/TwitchAOT#readme"
+}
