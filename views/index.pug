@@ -1,0 +1,15 @@
+doctype html
+html(lang="ko-KR")
+    head
+        include head.pug
+    body
+        div.container-fluid
+            div.paper 시청할 방송 아이디:
+                input(placeholder="트위치 ID")
+                button#move(onclick="twitch_move();") 이동
+                dialog#dialog(title="업데이트가 가능합니다!")
+                    p This is a dialog!
+                button(onclick="updatenofi();") 팝업
+            div.paper.with-shadow.animated#update-banner
+                i.fa.fa-check
+                | TwitchAOT가 최신 버전입니다.
