@@ -4,7 +4,11 @@
   "description": "Twitch Always on Top",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron . --disable-gpu",
+    "build": "electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.1 --app-bundle-id=twitchaot --platform win32 --arch x64 --out dist/ --overwrite",
+    "setup": "electron-installer-windows --src dist/TwitchAOT-win32-x64/ --dest dist/installers/ --icon twitch.ico --animation twitch.gif -noMsi true",
+    "pack": "asar pack dist/TwitchAOT-win32-x64/resources/app dist/TwitchAOT-win32-x64/resources/app.asar",
+    "final": "npm run build && npm run pack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +19,19 @@
   "bugs": {
     "url": "https://github.com/Bananamilk452/TwitchAOT/issues"
   },
-  "homepage": "https://github.com/Bananamilk452/TwitchAOT#readme"
+  "homepage": "https://github.com/Bananamilk452/TwitchAOT#readme",
+  "devDependencies": {
+    "asar": "^2.0.1",
+    "electron": "^5.0.6",
+    "electron-installer-windows": "^2.0.0",
+    "electron-packager": "^14.0.1"
+  },
+  "dependencies": {
+    "@terascope/fetch-github-release": "^0.6.0",
+    "custom-electron-titlebar": "^3.0.10",
+    "electron-pug": "^2.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "jquery": "^3.4.1",
+    "request": "^2.88.0"
+  }
 }

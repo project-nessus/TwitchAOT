@@ -1,0 +1,24 @@
+.container-fluid {
+    width: 80%;
+    height: 100%;
+    margin: auto auto;
+    overflow: hidden;
+}
+
+.fa {
+    height: 100%;
+    color: #fff;
+    font-size: 25px;
+}
+
+#update-banner {
+    margin: calc(100vh - 280px) auto 0;
+    text-align: center;
+    width: 30vw;
+    visibility: hidden;
+}
+
+.fa-check {
+    color: #6441A4 !important;
+    margin-right: 5px;
+}
