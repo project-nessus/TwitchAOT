@@ -6,7 +6,7 @@ const locals = {
   /* ...*/ }
 const setupPug = require('electron-pug');
 const request = require("request");
-const version = "1.0.0";
+const version = "0.9.0";
 // 기본 const
 let win
 global.sharedObject = {
