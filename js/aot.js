@@ -44,7 +44,6 @@ function DownNofi(text, fa) {
             function (err, res, body) {
                 let gparse = JSON.parse(body)
                 let CheckedVersion = gparse.tag_name;
-                console.log(gparse)
                 if (CheckedVersion.substring(1) > require('electron').remote.getGlobal('sharedObject').version) {
                     // TODO: 인터넷 연결 없을때 try문으로 제외시키기
                     // TODO: 로거 만들기

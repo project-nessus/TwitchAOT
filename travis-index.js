@@ -49,7 +49,9 @@ function Initialize() {
   // 이 메서드는 Electron이 초기화를 마치고 
   // 브라우저 창을 생성할 준비가 되었을 때  호출될 것입니다.
   // 어떤 API는 이 이벤트가 나타난 이후에만 사용할 수 있습니다.
-  
+  setTimeout(() => {
+    app.quit()
+  }, 10000);
   // 모든 창이 닫혔을 때 종료.
   app.on('window-all-closed', () => {
     // macOS에서는 사용자가 명확하게 Cmd + Q를 누르기 전까지는
