@@ -1,12 +1,8 @@
-const {
-  app,
-  BrowserWindow
-} = require('electron');
-const locals = {
-  /* ...*/ }
+const {app, BrowserWindow} = require('electron');
+const locals = { /* ...*/ }
 const setupPug = require('electron-pug');
 const request = require("request");
-const version = "0.9.0";
+const version = "1.0.0";
 // 기본 const
 let win
 global.sharedObject = {
@@ -73,40 +69,4 @@ function Initialize() {
   })
 }
 
-function UpdateCheck(version) {
-  request({
-      url: "https://api.github.com/repos/electron/electron/releases/latest",
-      method: "GET",
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.121 Electron/5.0.6 Safari/537.36"
-      }
-    },
-    function (err, res, body) {
-      let gparse = JSON.parse(body)
-      CheckedVersion = gparse.tag_name;
-      if (gparse.tag_name.substring(1) > version) {
-        // TODO: 업데이트 알림 띄우고 확인 누르면 설치하기 (aot.js)
-        // getGlobal 쓰면 됨
-        /*         var downloadRelease = require('@terascope/fetch-github-release');
-
-                // 릴리즈 필터
-                function filterRelease(release) {
-                    return release.prerelease === false;
-                }
-                // 에셋 플랫폼 필터
-                function filterAsset(asset) {
-                    // win32-x64 빌드만 다운로드
-                    return asset.name.indexOf('win32-x64') >= 0;
-                }
-
-                downloadRelease("twitchaot", "twitchaot", "./", filterRelease, filterAsset, false)
-                    .then(function () {
-                        console.log('All done!');
-                    })
-                    .catch(function (err) {
-                        console.error(err.message);
-                    }); */
-      }
-    });
-}
 Initialize()

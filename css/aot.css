@@ -12,13 +12,12 @@
 }
 
 #update-banner {
-    margin: calc(100vh - 280px) auto 0;
+    margin: calc(100vh - 230px) auto 0;
     text-align: center;
     width: 30vw;
     visibility: hidden;
 }
 
-.fa-check {
+#nofitext {
     color: #6441A4 !important;
-    margin-right: 5px;
 }

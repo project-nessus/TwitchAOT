@@ -1,11 +1,11 @@
 {
   "name": "twitchaot",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Twitch Always on Top",
   "main": "index.js",
   "scripts": {
     "start": "electron . --disable-gpu",
-    "build": "electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.1 --app-bundle-id=twitchaot --platform win32 --arch x64 --out dist/ --overwrite",
+    "build": "electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform win32 --arch x64 --out dist/ --overwrite",
     "setup": "electron-installer-windows --src dist/TwitchAOT-win32-x64/ --dest dist/installers/ --icon twitch.ico --animation twitch.gif -noMsi true",
     "pack": "asar pack dist/TwitchAOT-win32-x64/resources/app dist/TwitchAOT-win32-x64/resources/app.asar",
     "final": "npm run build && npm run pack"

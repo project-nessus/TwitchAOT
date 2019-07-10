@@ -13,11 +13,29 @@ $(document).ready(function () {
         backgroundColor: customTitlebar.Color.fromHex('#2C2541')
     });
 
+function DownNofi(text, fa) {
+    let banner = $("#update-banner");
+    let nofi = $("#nofitext")
+    nofi.text(text)
+    banner.css("visibility", "visible");
+    banner.addClass('slideInUp');
+    nofi.addClass(fa)
+    banner.one("animationend", function () {
+        $(this).removeClass("slideInUp")
+        $(this).addClass("slideOutDown delay-1s slow")
+        $(this).one("animationend", function () {
+            $(this).removeClass("slideOutDown delay-1s slow")
+            nofi.removeClass(fa)
+            $(this).css("visibility", "hidden");
+        });
+    });
+}
+
     function UpdateCheck() {
         var request = require("request")
         // TODO: uri.all.js.map, performance-now.js.map 버그 고치기 (취약점 가능)
         request({
-                url: "https://api.github.com/repos/electron/electron/releases/latest",
+                url: "https://api.github.com/repos/Bananamilk452/TwitchAOT/releases/latest",
                 method: "GET",
                 headers: {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.121 Electron/5.0.6 Safari/537.36"
@@ -26,44 +44,49 @@ $(document).ready(function () {
             function (err, res, body) {
                 let gparse = JSON.parse(body)
                 let CheckedVersion = gparse.tag_name;
+                console.log(gparse)
                 if (CheckedVersion.substring(1) > require('electron').remote.getGlobal('sharedObject').version) {
-                    console.log("need update")
-                    // TODO: 업데이트 알림 띄우고 확인 누르면 설치하기 (aot.js)
-                    // TODO: Github Release 주소 TwitchAOT로 바꾸기
-                    // getGlobal 쓰면 됨
-                    /*         var downloadRelease = require('@terascope/fetch-github-release');
-                    
-                            // 릴리즈 필터
-                            function filterRelease(release) {
-                                return release.prerelease === false;
-                            }
-                            // 에셋 플랫폼 필터
-                            function filterAsset(asset) {
-                                // win32-x64 빌드만 다운로드
-                                return asset.name.indexOf('win32-x64') >= 0;
-                            }
-                    
-                            downloadRelease("twitchaot", "twitchaot", "./", filterRelease, filterAsset, false)
-                                .then(function () {
-                                    console.log('All done!');
+                    // TODO: 인터넷 연결 없을때 try문으로 제외시키기
+                    // TODO: 로거 만들기
+                    var downloadRelease = require('@terascope/fetch-github-release');
+
+                    // 릴리즈 필터
+                    function filterRelease(release) {
+                        return release.prerelease === false;
+                    }
+                    // 에셋 플랫폼 필터
+                    function filterAsset(asset) {
+                        // win32-x64 빌드만 다운로드
+                        return asset.name.indexOf('setup') >= 0;
+                    }
+                    DownNofi("다운로드 및 설치 중입니다.","fa-download")
+                    downloadRelease("Bananamilk452", "twitchaot", "./", filterRelease, filterAsset, false, false)
+                        .then(function () {
+                            function UpdateProcess() {
+                                var exec = require('child_process').execFile;
+                                var fs = require('fs')
+                                exec('twitchaot-' + gparse.tag_name.substring(1) + '-setup.exe', function (err, data) {
+                                    console.log(err)
+                                    console.log(data.toString());
+                                    fs.unlinkSync('twitchaot-' + gparse.tag_name.substring(1) + '-setup.exe')
+                                    require('electron').remote.getCurrentWindow().close()
                                 })
-                                .catch(function (err) {
-                                    console.error(err.message);
-                                }); */
-                } else if (CheckedVersion.substring(1) == require('electron').remote.getGlobal('sharedObject').version) {
-                    $("#update-banner").css("visibility", "visible");
-                    $("#update-banner").addClass('slideInUp');
-                    $("#update-banner").one("animationend", function () {
-                        $(this).removeClass("slideInUp")
-                        $(this).addClass("slideOutDown delay-1s slow")
-                        $(this).one("animationend", function () {
-                            $(this).removeClass("slideOutDown delay-1s slow")
-                            $(this).css("visibility", "hidden");
+                            }
+                            UpdateProcess()
+                            console.log('All done!');
+                        })
+                        .catch(function (err) {
+                            DownNofi("업데이트 확인을 한번 더 눌러주세요.","fa-times")
+                            console.error(err.message);
                         });
-                    });
+
+                } else if (CheckedVersion.substring(1) == require('electron').remote.getGlobal('sharedObject').version) {
+                    // TODO: 방송 볼 떄 배너 살리기
+                    DownNofi("TwitchAOT가 최신버전입니다.","fa-check")
                 }
             });
     }
+
     const menu = new Menu();
     menu.append(new MenuItem({
         // TODO: 할 거 추가
@@ -165,14 +188,4 @@ function twitch_move() {
     $(".container-after-titlebar").append(slink.replace(/0streamer0/gi, streamerid));
     $("iframe[height=378]").css('width', '100vw')
     $("iframe[height=378]").css('height', 'calc(100vh - 30px)')
-}
-
-function updatenofi() {
-    $('#dialog').dialog({
-        draggable: false,
-        modal: true,
-    });
-    $(".ui-dialog").addClass("paper")
-    $('.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix').css("padding", ".2em .8em")
-    $(".ui-widget-overlay").css("opacity", ".5")
 }
