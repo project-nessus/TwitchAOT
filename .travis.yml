@@ -1,13 +1,11 @@
 language: node_js
 node_js:
   - '8'
+  - '10'
 addons:
   apt:
     packages:
       - xvfb
-      - libfaudio0
-      - gnupg 
-      - ca-certificates
 
 install:
   - export DISPLAY=':99.0'
@@ -15,12 +13,6 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
-  - sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
-  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-  - echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-  - sudo apt update 
-  - sudo apt install mono-devel
-  - sudo apt install --install-recommends winehq-stable
   - npm install
  
 script:
