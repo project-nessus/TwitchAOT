@@ -4,8 +4,12 @@ html(lang="ko-KR")
         include head.pug
     body
         div.container-fluid
-            div.paper 시청할 방송 아이디:
+            div#cover
+            div.paper#entry(style="margin-left:5vw; float:left;") 시청할 방송 아이디:
                 input(placeholder="트위치 ID")
-                button#move(onclick="twitch_move();") 이동
+                button#move(style="margin: 10px auto;" onclick="twitch_move();") 이동
+            div.paper#entry(style="margin-left:10vw; float:left;") 혹은 당신의 트위치 ID: 
+                input#id(placeholder="트위치 ID")
+                button#move(style="margin: 10px auto;" onclick="follow_move();") 이동
             div.paper.with-shadow.animated#update-banner
                 a.fa#nofitext $$content$$

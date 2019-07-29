@@ -12,7 +12,7 @@
 }
 
 #update-banner {
-    margin: calc(100vh - 230px) auto 0;
+    margin: calc(100vh - 80px) auto 0;
     text-align: center;
     width: 30vw;
     visibility: hidden;
