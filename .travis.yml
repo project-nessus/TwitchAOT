@@ -3,20 +3,23 @@ language: node_js
 node_js:
   - '8'
   - '10'
-mono: latest
+# mono: latest 
 addons:
   apt:
-    sources:
-      - sourceline: 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
-        key_url: 'https://dl.winehq.org/wine-builds/winehq.key'
+    # sources:
+      # - sourceline: 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
+      #  key_url: 'https://dl.winehq.org/wine-builds/winehq.key'
+      # NOT WORKING LOLOL
     packages:
       - unzip
-      - winehq-stable
+      # - winehq-stable
       
 services:
   - xvfb
 
 install:
+  - wget https://raw.githubusercontent.com/project-nessus/TwitchAOT/develop/travis_mw.sh && sudo chmod 775 travis_mw.sh
+  - ./travis_mw.sh
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
