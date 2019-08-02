@@ -1,13 +1,24 @@
+dist: bionic
 language: node_js
 node_js:
   - '8'
   - '10'
+mono:
+  - latest
 addons:
   apt:
+    sources:
+      - sourceline: 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
+        key_url: 'https://dl.winehq.org/wine-builds/winehq.key'
     packages:
       - xvfb
+      - gnupg 
+      - ca-certificates 
+      - unzip
+      - winehp-stable
 services:
   - xvfb
+
 install:
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
