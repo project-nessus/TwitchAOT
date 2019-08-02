@@ -6,13 +6,11 @@ node_js:
 # mono: latest 
 addons:
   apt:
-    # sources:
-      # - sourceline: 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
-      #  key_url: 'https://dl.winehq.org/wine-builds/winehq.key'
-      # NOT WORKING LOLOL
     packages:
       - unzip
       # - winehq-stable
+      # - gnupg 
+      # - ca-certificates
       
 services:
   - xvfb
