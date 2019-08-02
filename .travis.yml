@@ -27,7 +27,7 @@ install:
  
 script:
   - npm run ci
-  - electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform win32 --arch x32 --out dist/ --overwrite
+  - electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform win32 --arch ia32 --out dist/ --overwrite
   - npm run build
   - npm run pack
   - npm run linux-build
