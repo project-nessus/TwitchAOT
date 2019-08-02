@@ -8,4 +8,5 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328
 echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
 sudo apt update -q
 sudo apt-get install -y --no-install-recommends winehq-stable
+sudo apt-get install -y gnupg ca-certificates unzip
 sudo apt install -y mono-devel
