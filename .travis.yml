@@ -23,7 +23,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
   - npm install
-  - sudo npm install -g electron-packager
+  - npm install -g electron-packager
  
 script:
   - npm run ci
