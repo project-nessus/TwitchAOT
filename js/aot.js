@@ -14,6 +14,7 @@ $(document).ready(function () {
     });
 
     function DownNofi(text, fa) {
+        if ($("#update-banner").text() == "") alert(text);
         let banner = $("#update-banner");
         let nofi = $("#nofitext")
         nofi.text(text)
