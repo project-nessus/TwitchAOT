@@ -3,8 +3,7 @@ language: node_js
 node_js:
   - '8'
   - '10'
-mono:
-  - latest
+mono: latest
 addons:
   apt:
     sources:
@@ -15,7 +14,7 @@ addons:
       - gnupg 
       - ca-certificates 
       - unzip
-      - winehp-stable
+      - winehq-stable
 services:
   - xvfb
 
@@ -28,5 +27,7 @@ install:
  
 script:
   - npm run ci
-  - npm run linux-build
+  - npm run build
   - npm run pack
+  - npm run linux-build
+  - npm run linux-pack
