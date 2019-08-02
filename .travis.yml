@@ -10,11 +10,9 @@ addons:
       - sourceline: 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
         key_url: 'https://dl.winehq.org/wine-builds/winehq.key'
     packages:
-      - xvfb
-      - gnupg 
-      - ca-certificates 
       - unzip
       - winehq-stable
+      
 services:
   - xvfb
 
