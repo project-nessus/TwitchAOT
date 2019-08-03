@@ -33,6 +33,4 @@ script:
   - npm run build-32
   - npm run pack
   - npm run linux-build
-  - npm run linux-build-32 
   - npm run linux-pack
-  - npm run linux-setup
