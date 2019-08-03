@@ -7,7 +7,7 @@ node_js:
 addons:
   apt:
     packages:
-      - unzip
+      # - unzip
       # - winehq-stable
       # - gnupg 
       # - ca-certificates
@@ -23,13 +23,15 @@ install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
-  - npm install
-  - npm install -g electron-packager
+  - yarn install
+  - yarn -D add electron-installer-debian
  
 script:
   - npm run ci
-  - electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform win32 --arch ia32 --out dist/ --overwrite
   - npm run build
+  - npm run build-32
   - npm run pack
   - npm run linux-build
+  - npm run linux-build-32 
   - npm run linux-pack
+  - npm run linux-setup
