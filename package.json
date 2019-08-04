@@ -1,5 +1,5 @@
 {
-  "name": "TwitchAOT",
+  "name": "twitchaot",
   "version": "1.0.1",
   "description": "Twitch Always on Top",
   "main": "index.js",
@@ -11,8 +11,8 @@
     "pack": "asar pack dist/TwitchAOT-win32-x64/resources/app dist/TwitchAOT-win32-x64/resources/app.asar",
     "setup": "electron-installer-windows --src dist/TwitchAOT-win32-x64/ --dest dist/installers/ --icon twitch.ico --animation twitch.gif -noMsi true",
 
-    "linux-build": "electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform linux --arch x64 --out dist/ --overwrite",
-    "linux-build-32": "electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform linux --arch ia32 --out dist/ --overwrite",
+    "linux-build": "electron-packager . twitchaot --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform linux --arch x64 --out dist/ --overwrite",
+    "linux-build-32": "electron-packager . twitchaot --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform linux --arch ia32 --out dist/ --overwrite",
     "linux-pack": "asar pack dist/TwitchAOT-linux-x64/resources/app dist/TwitchAOT-linux-x64/resources/app.asar",
     "linux-setup": "electron-installer-debian --src dist/TwitchAOT-linux-x64/ --dest dist/installers/ --arch x64",
 

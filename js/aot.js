@@ -13,25 +13,6 @@ $(document).ready(function () {
         backgroundColor: customTitlebar.Color.fromHex('#2C2541')
     });
 
-    function DownNofi(text, fa) {
-        if ($("#update-banner").text() == "") alert(text);
-        let banner = $("#update-banner");
-        let nofi = $("#nofitext")
-        nofi.text(text)
-        banner.css("visibility", "visible");
-        banner.addClass('slideInUp');
-        nofi.addClass(fa)
-        banner.one("animationend", function () {
-            $(this).removeClass("slideInUp")
-            $(this).addClass("slideOutDown delay-1s slow")
-            $(this).one("animationend", function () {
-                $(this).removeClass("slideOutDown delay-1s slow")
-                nofi.removeClass(fa)
-                $(this).css("visibility", "hidden");
-            });
-        });
-    }
-
     function UpdateCheck() {
         var request = require("request")
         // TODO: uri.all.js.map, performance-now.js.map 버그 고치기 (취약점 가능)
@@ -60,7 +41,7 @@ $(document).ready(function () {
                         // win32-x64 빌드만 다운로드
                         return asset.name.indexOf('setup') >= 0;
                     }
-                    DownNofi("다운로드 및 설치 중입니다.", "fa-download")
+                    alert("다운로드 및 설치 중입니다.")
                     downloadRelease("Bananamilk452", "twitchaot", "./", filterRelease, filterAsset, false, false)
                         .then(function () {
                             function UpdateProcess() {
@@ -77,13 +58,12 @@ $(document).ready(function () {
                             console.log('All done!');
                         })
                         .catch(function (err) {
-                            DownNofi("업데이트 확인을 한번 더 눌러주세요.", "fa-times")
+                            alert("업데이트 확인을 한번 더 눌러주세요.")
                             console.error(err.message);
                         });
 
                 } else if (CheckedVersion.substring(1) <= require('electron').remote.getGlobal('sharedObject').version) {
-                    // TODO: 방송 볼 떄 배너 살리기
-                    DownNofi("TwitchAOT가 최신버전입니다.", "fa-check")
+                    alert("TwitchAOT가 최신버전입니다.")
                 }
             });
     }
@@ -91,7 +71,7 @@ $(document).ready(function () {
     const menu = new Menu();
     menu.append(new MenuItem({
         // TODO: 할 거 추가
-        label: '$menu$',
+        label: '',
         submenu: [{
                 label: '업데이트 확인',
                 click: () => UpdateCheck()
@@ -115,7 +95,7 @@ $(document).ready(function () {
         ]
     }));
     menu.append(new MenuItem({
-        label: '$resolution$',
+        label: '',
         submenu: [{
                 label: '1920x1080',
                 click: () => require('electron').remote.getCurrentWindow().setContentSize(1920, 1110)
@@ -151,7 +131,7 @@ $(document).ready(function () {
         ]
     }));
     menu.append(new MenuItem({
-        label: '$refresh$',
+        label: '',
         click: () => window.location.reload(true)
     }));
 
@@ -172,18 +152,12 @@ height="378" width="620"></iframe><a href="https://www.twitch.tv/0streamer0?tt_c
 style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">`
 let clink = `<iframe src="https://www.twitch.tv/embed/0streamer0/chat" frameborder="0" scrolling="no" height="500" width="350"></iframe>`
 $(document).ready(function () {
-    $(".menubar-menu-title")[0].innerHTML = ""
     $(".menubar-menu-title")[0].className += " fa fa-bars"
-    $(".menubar-menu-title")[1].innerHTML = ""
     $(".menubar-menu-title")[1].className += " fa fa-desktop"
-    $(".menubar-menu-title")[2].innerHTML = ""
     $(".menubar-menu-title")[2].className += " fa fa-repeat"
 });
 
-function twitch_move() {
-    // TODO: 빈칸일 경우에 dialog 띄우기
-    let twitchid = $("input").val()
-    $(".paper").remove()
+function twitch_move(twitchid) {
     $(".container-fluid").remove()
     $(".container-after-titlebar").css('overflow', 'hidden')
     $(".container-after-titlebar").append(slink.replace(/0streamer0/gi, twitchid));
@@ -194,7 +168,8 @@ function twitch_move() {
 function follow_move() {
     // TODO: 빈칸일 경우에 dialog 띄우기
     let twitchid = $("#id").val()
-    var follower, guid, name, guidlist, idlist;
+    $('#entry').remove()
+    var guid, guidlist, idlist;
     guidlist = "https://api.twitch.tv/helix/streams?"
     idlist = "https://api.twitch.tv/helix/users?"
     var request = require("request")
@@ -251,7 +226,9 @@ function follow_move() {
                                 $('#entry').remove()
                                 for (var i = 0; i < Object.keys(pdata.data).length; i++) {
                                     console.log(pdata.data[i].user_name)
-                                    $('#cover').append(`<div class="paper" style="float:left; margin-right:1rem;"><img width="100" height="100" src="${profile.data[i].profile_image_url}"/><p style="margin:0; line-height:1.8em; display:inline;"><br />${profile.data[i].display_name} (${profile.data[i].login})<br />${pdata.data[i].viewer_count}</p><p style="float:left;margin:0;margin-right:5px;font-size:10px;color:#e21212;">●</p></div>`)
+                                    $('#update-banner').remove()
+                                    if (profile.data[i].display_name.toLowerCase() == profile.data[i].login.toLowerCase()) $('#cover').append(`<div class="paper" style="float:left; margin-right:1rem;" onclick="twitch_move('${profile.data[i].login}')"><img width="100" height="100" src="${profile.data[i].profile_image_url}"/><p style="margin:0; line-height:1.8em; display:inline;"><br />${profile.data[i].display_name}<br />${pdata.data[i].viewer_count}</p><p style="float:left;margin:0;margin-right:5px;font-size:10px;color:#e21212;">●</p></div>`)
+                                    else $('#cover').append(`<div class="paper" style="float:left; margin-right:1rem;" onclick="twitch_move('${profile.data[i].login}')"><img width="100" height="100" src="${profile.data[i].profile_image_url}"/><p style="margin:0; line-height:1.8em; display:inline;"><br />${profile.data[i].display_name} (${profile.data[i].login})<br />${pdata.data[i].viewer_count}</p><p style="float:left;margin:0;margin-right:5px;font-size:10px;color:#e21212;">●</p></div>`)
                                 }
                             })
                         });
