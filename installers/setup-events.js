@@ -50,7 +50,6 @@ module.exports = {
           // --squirrel-updated handlers
   
           // Remove desktop and start menu shortcuts
-          alert("TwitchAOT is successfully uninstalled.")
           spawnUpdate(['--removeShortcut', exeName])
   
           setTimeout(app.quit, 1000)

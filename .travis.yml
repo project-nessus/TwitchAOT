@@ -1,0 +1,36 @@
+dist: bionic
+language: node_js
+node_js:
+  - '8'
+  - '10'
+# mono: latest 
+addons:
+  apt:
+    packages:
+      - fakeroot
+      # - unzip
+      # - winehq-stable
+      # - gnupg 
+      # - ca-certificates
+      
+services:
+  - xvfb
+
+install:
+  - wget https://raw.githubusercontent.com/project-nessus/TwitchAOT/develop/travis_mw.sh && sudo chmod 775 travis_mw.sh
+  - ./travis_mw.sh
+  - wine --version && mono --version
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
+  - yarn install
+  - yarn -D add electron-installer-debian
+ 
+script:
+  - npm run ci
+  - npm run build
+  - npm run build-32
+  - npm run pack
+  - npm run linux-build
+  - npm run linux-pack
