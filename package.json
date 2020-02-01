@@ -5,19 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "electron . --disable-gpu",
-
+    "no-sandbox": "electron . --disable-gpu --no-sandbox",
     "build": "electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform win32 --arch x64 --out dist/ --overwrite",
     "build-32": "electron-packager . TwitchAOT --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform win32 --arch ia32 --out dist/ --overwrite",
     "pack": "asar pack dist/TwitchAOT-win32-x64/resources/app dist/TwitchAOT-win32-x64/resources/app.asar",
+    "pack-32": "asar pack dist/TwitchAOT-win32-ia32/resources/app dist/TwitchAOT-win32-ia32/resources/app.asar",
     "setup": "electron-installer-windows --src dist/TwitchAOT-win32-x64/ --dest dist/installers/ --icon twitch.ico --animation twitch.gif -noMsi true",
-
-    "linux-build": "electron-packager . twitchaot --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform linux --arch x64 --out dist/ --overwrite",
-    "linux-build-32": "electron-packager . twitchaot --icon=twitch.ico --app-version=1.0.0 --app-bundle-id=twitchaot --platform linux --arch ia32 --out dist/ --overwrite",
-    "linux-pack": "asar pack dist/TwitchAOT-linux-x64/resources/app dist/TwitchAOT-linux-x64/resources/app.asar",
-    "linux-setup": "electron-installer-debian --src dist/TwitchAOT-linux-x64/ --dest dist/installers/ --arch x64",
-
-    "final": "npm run build && npm run pack",
-    "ci" : "electron travis-index.js --disable-gpu"
+    "setup-32": "electron-installer-windows --src dist/TwitchAOT-win32-ia32/ --dest dist/installers/ --icon twitch.ico --animation twitch.gif -noMsi true"
   },
   "repository": {
     "type": "git",
@@ -31,16 +25,22 @@
   "homepage": "https://github.com/Bananamilk452/TwitchAOT#readme",
   "devDependencies": {
     "asar": "^2.0.1",
-    "electron": "^5.0.6",
     "electron-installer-windows": "^2.0.0",
-    "electron-packager": "^14.0.1"
+    "electron-packager": "^14.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
   },
   "dependencies": {
-    "@terascope/fetch-github-release": "^0.6.0",
+    "axios": "^0.19.2",
     "custom-electron-titlebar": "^3.0.10",
+    "electron": "^7.1.11",
+    "electron-json-storage": "^4.1.8",
     "electron-pug": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
-    "jquery": "^3.4.1",
-    "request": "^2.88.0"
+    "jquery": "^3.4.1"
   }
 }

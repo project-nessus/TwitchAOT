@@ -5,7 +5,9 @@ const version = "1.0.1";
 // 기본 const
 let win
 global.sharedObject = {
-  version: version
+  version: version,
+  id: null,
+  token: 'kihnu5gzn0kp6j98upo83ppow60ty0'
 }
 
 if (require('electron-squirrel-startup')) app.quit()

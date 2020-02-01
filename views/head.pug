@@ -1,6 +1,6 @@
 title 
 meta(name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
-meta(http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.bootstrapcdn.com; img-src * 'self' data:; font-src https://*.gstatic.com https://*.googleapis.com https://*.bootstrapcdn.com; frame-src https://*.twitch.tv")
+meta(http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://*.twitch.tv; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.bootstrapcdn.com; img-src * 'self' data:; font-src https://*.gstatic.com https://*.googleapis.com https://*.bootstrapcdn.com; frame-src https://*.twitch.tv")
 link(rel="stylesheet" href="../css/flat-remix.min.css")  
 link(rel="stylesheet" href="../css/animate.css")
 link(rel="stylesheet" href="../css/aot.css")
@@ -8,4 +8,6 @@ link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.
 //-  TODO: 구글 애널리틱스
 script.
   window.$ = window.jQuery = require('../node_modules/jquery/dist/jquery.js')
-script(src="../js/aot.js") 
+script(async src="../js/index.js")
+script(async src="../js/aot.js")
+script(src="../js/ux.js")

@@ -1,9 +1,22 @@
 .container-fluid {
+    display: flex;
+    justify-content: center;
     width: 80%;
     height: 100%;
     margin: auto auto;
 }
 
+#title {
+    margin-top: 5px;
+}
+
+#confirm {
+    margin-top: 15px;
+}
+
+.paper {
+    height: 195px;
+}
 .fa {
     height: 100%;
     color: #fff;

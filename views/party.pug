@@ -1,0 +1,23 @@
+doctype html
+html(lang="ko-KR")
+    head
+        title 
+        meta(name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+        meta(http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.bootstrapcdn.com; img-src * 'self' data:; font-src https://*.gstatic.com https://*.googleapis.com https://*.bootstrapcdn.com; frame-src https://*.twitch.tv")
+        link(rel="stylesheet" href="../css/flat-remix.min.css")  
+        link(rel="stylesheet" href="../css/aot.css")
+        script.
+            window.$ = window.jQuery = require('../node_modules/jquery/dist/jquery.js')
+            const remote = require('electron')
+            const { Menu,MenuItem } = remote
+
+            $(document).ready(function () {
+            const customTitlebar = require('custom-electron-titlebar');
+            var Titlebar = new customTitlebar.Titlebar({
+            backgroundColor: customTitlebar.Color.fromHex('#2C2541'),
+            menu: ""
+                });
+            });
+    body
+        div.container-fluid
+            div.paper Sibal

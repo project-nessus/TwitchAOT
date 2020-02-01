@@ -5,6 +5,11 @@ html(lang="ko-KR")
     body
         div.container-fluid
             div#cover
-            div.paper#entry(style="margin-left:10vw; float:left;") 당신의 트위치 ID: 
-                input#id(placeholder="트위치 ID")
-                button#move(style="margin: 10px auto;" onclick="follow_move();") 이동
+            div.paper#entry 
+                #title
+                    | 당신의 트위치 ID: 
+                    input#id(placeholder="트위치 ID")
+                #confirm
+                    input(type="checkbox")
+                    | 다음에도 기억하기 (설정에서 변경가능)
+                button#move(style="margin: 10px auto;" onclick="ip()") 이동
