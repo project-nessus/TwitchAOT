@@ -37,7 +37,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "custom-electron-titlebar": "^3.0.10",
-    "electron": "^7.1.11",
+    "electron": "^7.2.4",
     "electron-json-storage": "^4.1.8",
     "electron-pug": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
